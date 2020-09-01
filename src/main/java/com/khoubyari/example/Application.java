@@ -29,6 +29,8 @@ public class Application extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		String password="ABCD@!@@@";
+		int a=10;
+		a=+10;
 		System.out.println("password"+password);
 		SpringApplication.run(applicationClass, args);
 	}
