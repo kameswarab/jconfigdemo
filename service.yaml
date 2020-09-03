@@ -15,6 +15,5 @@ spec:
       containers:
       - name: jenkins-demo
         image: __IMAGE__
-        args:["--skip-tls-verify"]
         ports:
         - containerPort: 9080
