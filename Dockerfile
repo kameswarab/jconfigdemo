@@ -27,16 +27,7 @@ ENV JAVA_HOME /etc/alternatives/jre
 # Initial stage which pulls prepares build dependencies and CLI tooling we need for our final image
 # Also used as the image in CI jobs so needs all dependencies
 ####################################################################################################
-FROM argoproj/argocd as builder
-
-
-
-####################################################################################################
-# Final image
-####################################################################################################
-FROM argocd-base
-COPY --from=builder /usr/local/bin/argocd* /usr/local/bin/
-COPY --from=builder /shared/app /shared/app
+FROM argoproj/argocd
 COPY --from=javabase  /usr/lib/jvm/* /usr/lib/jvm/
 ENV JAVA_HOME /usr/lib/jvm/jre 
 ENV PORT 8090
