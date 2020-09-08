@@ -30,6 +30,7 @@ ENV JAVA_HOME /etc/alternatives/jre
 FROM argoproj/argocd
 COPY --from=javabase  /etc/alternatives/jre/* /usr/lib/jre/
 ENV JAVA_HOME /usr/lib/jre 
+ENV PATH $PATH:$JAVA_HOME/bin
 ENV PORT 8090
 ENV CLASSPATH /opt/lib
 EXPOSE 8090
