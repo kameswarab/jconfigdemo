@@ -28,10 +28,6 @@ public class Application extends SpringBootServletInitializer {
     private static final Logger log = LoggerFactory.getLogger(applicationClass);
 
 	public static void main(String[] args) {
-		String password="ADC@123";
-		int a=10;
-		a=+10;
-		System.out.println(password+" "+a);
 		SpringApplication.run(applicationClass, args);
 	}
 
