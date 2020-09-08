@@ -6,10 +6,15 @@ FROM argoproj/argocd
 ENV PORT 8090
 ENV CLASSPATH /opt/lib
 EXPOSE 8090
-RUN curl -fsSL http://download.oracle.com/otn-pub/java/jdk/8u141-b15/336fa29ff2bb4ef291e347e091f7f4a7/jdk-8u141-linux-x64.rpm
-RUN sudo yum install -y jdk-8u141-linux-x64.rpm
+RUN yum install -y \
+       java-1.8.0-openjdk-1.8.0.242.b08-1.el7 \ 
+       java-1.8.0-openjdk-devel-1.8.0.242.b08-1.el7 \ 
+    && echo "securerandom.source=file:/dev/urandom" >> /usr/lib/jvm/jre/lib/security/java.security \
+    && yum clean all
+
+ENV JAVA_HOME /etc/alternatives/jre
 # copy pom.xml and wildcards to avoid this command failing if there's no target/lib directory
-COPY pom.xml target/lib* /opt/lib//
+COPY pom.xml target/lib* /opt/lib/
 
 # NOTE we assume there's only 1 jar in the target dir
 # but at least this means we don't have to guess the name
