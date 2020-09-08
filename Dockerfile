@@ -6,7 +6,7 @@ FROM argoproj/argocd
 ENV PORT 8090
 ENV CLASSPATH /opt/lib
 EXPOSE 8090
-RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u141-b15/336fa29ff2bb4ef291e347e091f7f4a7/jdk-8u141-linux-x64.rpm
+RUN curl -fsSL http://download.oracle.com/otn-pub/java/jdk/8u141-b15/336fa29ff2bb4ef291e347e091f7f4a7/jdk-8u141-linux-x64.rpm
 RUN sudo yum install -y jdk-8u141-linux-x64.rpm
 # copy pom.xml and wildcards to avoid this command failing if there's no target/lib directory
 COPY pom.xml target/lib* /opt/lib//
