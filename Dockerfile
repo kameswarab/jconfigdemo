@@ -1,4 +1,6 @@
 FROM openjdk:8-jdk-slim
+FROM argoproj/argocd
+FROM lachlanevenson/k8s-kubectl
 ENV PORT 8090
 ENV CLASSPATH /opt/lib
 EXPOSE 8090
