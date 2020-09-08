@@ -28,8 +28,8 @@ ENV JAVA_HOME /etc/alternatives/jre
 # Also used as the image in CI jobs so needs all dependencies
 ####################################################################################################
 FROM argoproj/argocd
-COPY --from=javabase  /usr/lib/jvm/* /usr/lib/jvm/
-ENV JAVA_HOME /usr/lib/jvm/jre 
+COPY --from=javabase  /etc/alternatives/jre/* /usr/lib/jre/
+ENV JAVA_HOME /usr/lib/jre 
 ENV PORT 8090
 ENV CLASSPATH /opt/lib
 EXPOSE 8090
