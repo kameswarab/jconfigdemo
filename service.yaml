@@ -12,6 +12,7 @@ spec:
       labels:
         run: __APP_NAME__
     spec:
+      serviceAccountName: internal-kubectl
       containers:
       - name: __APP_NAME__
         image: __IMAGE__
