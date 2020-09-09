@@ -121,6 +121,20 @@ public class HotelController extends AbstractRestHandler {
         while ((line = reader.readLine()) != null) {
             output.append(line + "\n");
         }
+        
+        int exitVal = process.waitFor();
+        if (exitVal == 0) {
+        	log.info("success : "+output.toString());
+        } else {
+        	reader = new BufferedReader(
+                    new InputStreamReader(process.getErrorStream()));
+
+            String lineq;
+            while ((lineq = reader.readLine()) != null) {
+                output.append(lineq + "\n");
+            }
+            log.info(output.toString());
+        }
 		return output.toString();
     }
 
