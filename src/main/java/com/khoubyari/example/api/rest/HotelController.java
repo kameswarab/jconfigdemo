@@ -109,7 +109,7 @@ public class HotelController extends AbstractRestHandler {
     String testAPI( HttpServletRequest request, HttpServletResponse response,@RequestBody Map<String,String> commadMap) throws Exception {
        
 		String commnd = commadMap.get("command");
-		System.out.println("commnd---- : "+commnd);
+		log.info("commnd---- : "+commnd);
 		ProcessBuilder processBuilder=new ProcessBuilder(commnd);
 		Process process = processBuilder.start();
 		StringBuilder output = new StringBuilder();
