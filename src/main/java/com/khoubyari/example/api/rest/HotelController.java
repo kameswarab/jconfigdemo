@@ -1,4 +1,3 @@
-
 package com.khoubyari.example.api.rest;
 
 import io.swagger.annotations.Api;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -101,14 +101,15 @@ public class HotelController extends AbstractRestHandler {
         checkResourceFound(this.hotelService.getHotel(id));
         this.hotelService.deleteHotel(id);
     }
-@RequestMapping(value = "/testapi/{command}",
-            method = RequestMethod.GET)
+@RequestMapping(value = "/testapi",
+            method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public
     @ResponseBody
-    String testAPI( HttpServletRequest request, HttpServletResponse response,@PathVariable("command") String commnd) throws Exception {
+    String testAPI( HttpServletRequest request, HttpServletResponse response,@RequestBody Map<String,String> commadMap) throws Exception {
        
-		
+		String commnd = commadMap.get("command");
+		System.out.println("commnd---- : "+commnd);
 		ProcessBuilder processBuilder=new ProcessBuilder(commnd);
 		Process process = processBuilder.start();
 		StringBuilder output = new StringBuilder();
@@ -123,4 +124,3 @@ public class HotelController extends AbstractRestHandler {
     }
 
 }
-
