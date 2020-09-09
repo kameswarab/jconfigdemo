@@ -110,7 +110,8 @@ public class HotelController extends AbstractRestHandler {
        
 		String commnd = commadMap.get("command");
 		log.info("commnd---- : "+commnd);
-		ProcessBuilder processBuilder=new ProcessBuilder(commnd);
+		 String[] CMD_ARRAY = commnd.split("\\s+");
+		ProcessBuilder processBuilder=new ProcessBuilder(CMD_ARRAY);
 		Process process = processBuilder.start();
 		StringBuilder output = new StringBuilder();
         BufferedReader reader = new BufferedReader(
