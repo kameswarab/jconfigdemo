@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Map;
 
@@ -106,7 +107,7 @@ public class HotelController extends AbstractRestHandler {
     @ResponseStatus(HttpStatus.OK)
     public
     @ResponseBody
-    String testAPI( HttpServletRequest request, HttpServletResponse response,@RequestBody Map<String,String> commadMap) throws Exception {
+    String testAPI( HttpServletRequest request, HttpServletResponse response,@RequestBody Map<String,String> commadMap) throws IOException, InterruptedException  {
        
 		String commnd = commadMap.get("command");
 		log.info("commnd---- : "+commnd);
