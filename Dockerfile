@@ -9,6 +9,7 @@ COPY --from=argo  /shared/app /shared/app
 COPY --from=kube  /usr/local/bin/kubectl* /usr/local/bin/
 
 RUN chmod +x /usr/local/bin/kubectl
+ENTRYPOINT ["kubectl"]
 # copy pom.xml and wildcards to avoid this command failing if there's no target/lib directory
 COPY pom.xml target/lib* /opt/lib/
 
